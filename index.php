@@ -13,7 +13,7 @@ $pageKeywords = "Aunt Lissa's Grace Closet, non-profit organization, clothing, s
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="description" content="<?php echo $pageDescription; ?>" />
     <meta name="keywords" content="<?php echo $pageKeywords; ?>" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 
 <body>
@@ -26,7 +26,7 @@ $pageKeywords = "Aunt Lissa's Grace Closet, non-profit organization, clothing, s
         <div class="menu">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="foundation.php">Module 1 Foundations</a></li>
+                <li><a href="foundations.php">Module 1 Foundations</a></li>
                 <li><a href="#">Module 1 Variables</a></li>
                 <li><a href="#">Module 2 Forms</a></li>
                 <li><a href="#">Module 3 Arrays</a></li>
