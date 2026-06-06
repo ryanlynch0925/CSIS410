@@ -77,3 +77,40 @@ body {
 .validation {
     margin-top: 15px;
 }
+
+.orgChart {
+    margin-top: 20px;
+}
+
+.employeeCard {
+    background-color: #f4e3bd;
+    border-left: 5px solid #6b4f2a;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.employeeCard h3 {
+    margin-top: 0;
+}
+
+.employeeProfile {
+    background-color: #ffffff;
+    border: 1px solid #d6c7ad;
+    padding: 20px;
+}
+
+.employeePhoto {
+    width: 200px;
+    height: 200px;
+    border: 3px solid #6b4f2a;
+    float: right;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.aiNotice {
+    font-size: 0.9em;
+    font-style: italic;
+    color: #555555;
+    margin-top: 20px;
+}
