@@ -26,8 +26,8 @@ $pageKeywords = "about, Christian business, children's consignment, family, stew
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="foundations.php">Module 1 Foundations</a></li>
-                <li><a href="#">Module 1 Variables</a></li>
-                <li><a href="#">Module 2 Forms</a></li>
+                <li><a href="orgchart.php">Module 1 Variables</a></li>
+                <li><a href="forms.php">Module 2 Forms</a></li>
                 <li><a href="#">Module 3 Arrays</a></li>
                 <li><a href="#">Module 4 Sessions</a></li>
                 <li><a href="#">Module 5 CMS Sessions</a></li>

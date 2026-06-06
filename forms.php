@@ -1,7 +1,7 @@
 <?php
-$pageTitle = "Aunt Lissa's Grace Closet";
-$pageDescription = "Aunt Lissa's Grace Closet is a non-profit organization dedicated to providing clothing and support to those in need. We believe that everyone deserves to feel confident and comfortable in their own skin, and we strive to make that a reality for our clients.";
-$pageKeywords = "Aunt Lissa's Grace Closet, non-profit organization, clothing, support, confidence, comfort";
+$pageTitle = "Module 2 Forms";
+$pageDescription = "GET and POST product survey forms for Aunt Lissa's Grace Closet";
+$pageKeywords = "PHP forms, GET method, POST method, product survey";
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -19,8 +19,8 @@ $pageKeywords = "Aunt Lissa's Grace Closet, non-profit organization, clothing, s
 <body>
     <div id="container">
         <div class="header">
-            <h1><?php echo $pageTitle; ?></h1>
-            <p class="tagline">Providing clothing and support to those in need</p>
+            <h1>Aunt Lissa's Grace Closet</h1>
+            <p class="tagline">Module 2 Forms Assignment</p>
         </div>
 
         <div class="menu">
@@ -41,14 +41,26 @@ $pageKeywords = "Aunt Lissa's Grace Closet, non-profit organization, clothing, s
         </div>
 
         <div class="content">
-            <h2>Welcome to Aunt Lissa's Grace Closet!</h2>
-            <p>Aunt Lissa's Grace Closet is a Christian online consignment store created to help families find affordable clothing and support. We believe that everyone deserves to feel confident and comfortable in their own skin, and we strive to make that a reality for our clients.</p>
+            <h2>PHP, GET, and POST Methods</h2>
 
-            <div class="highlight">
-                <p>This website will grow throughout the course of this class, so check back often to see new features and updates!</p>
-            </div>
+            <p>
+                PHP is a server-side scripting language that processes form data and creates dynamic web pages.
+            </p>
+            <p>
+                The GET method sends form information through the URL, which makes it useful for simple searches or non-pricate information.
+            </p>
+            <p>
+                The POST method sends form information through the request body instead of the URL, which makes it better for longer form submission or information that should not be displayed in the address bar.
+            </p>
 
-            <p>Thank you for visiting Aunt Lissa's Grace Closet. We hope to serve you and your family soon!</p>
+            <h2>Product Survey Forms</h2>
+
+            <p>
+                Please choose one of the two product survey forms below. Both surveys rank three products that may be used later in the shopping cart projects.
+            </p>
+
+            <p><a href="get-poll.php">Complete the GET Product Survey</a></p>
+            <p><a href="post-poll.php">Complete the POST Product Survey</a></p>
         </div>
 
         <div class="footer">
