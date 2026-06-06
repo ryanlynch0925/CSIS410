@@ -13,7 +13,7 @@ $pageKeywords = "Aunt Lissa's Grace Closet, non-profit organization, clothing, s
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="description" content="<?php echo $pageDescription; ?>" />
     <meta name="keywords" content="<?php echo $pageKeywords; ?>" />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css?v=<?php echo filemtime('styles.css'); ?>" />
 </head>
 
 <body>

@@ -13,13 +13,15 @@ $pageKeywords = "Melissa Carter, employee profile, Aunt Lissa's Grace Closet";
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="description" content="<?php echo $pageDescription; ?>" />
     <meta name="keywords" content="<?php echo $pageKeywords; ?>" />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css?v=<?php echo filemtime('styles.css'); ?>" />
 </head>
 
 <body>
     <div id="container">
-        <h1>Aunt Lissa's Grace Closet</h1>
-        <p class="tagline">Employee Profile</p>
+        <div class="header">
+            <h1>Aunt Lissa's Grace Closet</h1>
+            <p class="tagline">Employee Profile</p>
+        </div>
     </div>
 
     <div class="menu">

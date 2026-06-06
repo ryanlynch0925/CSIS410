@@ -31,12 +31,12 @@ $danielPhoto = "images/daniel-brooks.png";
 
 function displayEmployeeCard($name, $title, $department, $link)
 {
-    echo "<div class='employee-card'>";
+    echo "<div class=\"employeeCard\">";
     echo "<h3>$name</h3>";
     echo "<p><strong>Title:</strong> " . $title . "</p>";
     echo "<p><strong>Department:</strong> " . $department . "</P>";
     echo "<p><a href=\"" . $link . "\">View Employee Profile</a></p>";
-    echo "</div";
+    echo "</div>";
 }
 
 function displayEmployeeProfile($name, $title, $department, $degree, $favoriteBook, $hobbies, $goal, $photo)

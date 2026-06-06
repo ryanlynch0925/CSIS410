@@ -8,13 +8,13 @@ $pageKeywords = "PHP variables, PHP functions, organizational chart, employees";
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<htnl xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <title><?php echo $pageTitle; ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="<?php echo $pageDescription; ?>" />
     <meta name="keywords" content="<?php echo $pageKeywords; ?>" />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css?v=<?php echo filemtime('styles.css'); ?>" />
 </head>
 
 <body>
@@ -28,7 +28,7 @@ $pageKeywords = "PHP variables, PHP functions, organizational chart, employees";
             <ul>
                 <li><a href="index.php">Home</a></li>
                 <li><a href="foundations.php">Module 1 Foundations</a></li>
-                <li><a href="orgchart.php">Module 1 Varibales</a></li>
+                <li><a href="orgchart.php">Module 1 Variables</a></li>
                 <li><a href="#">Module 2 Forms</a></li>
                 <li><a href="#">Module 3 Arrays</a></li>
                 <li><a href="#">Module 4 Sessions</a></li>
@@ -52,7 +52,7 @@ $pageKeywords = "PHP variables, PHP functions, organizational chart, employees";
                 <?php
                 displayEmployeeCard($lissaName, $lissaTitle, $lissaDepartment, $lissaLink);
                 displayEmployeeCard($graceName, $graceTitle, $graceDepartment, $graceLink);
-                displayEmployeeCard($danieName, $danieTitle, $danieDepartment, $danieLink);
+                displayEmployeeCard($danielName, $danielTitle, $danielDepartment, $danielLink);
                 ?>
             </div>
 
