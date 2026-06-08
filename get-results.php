@@ -68,6 +68,8 @@ $comments = getAnswer("comments");
             <p><a href="get-poll.php">Return to GET Survey</a></p>
             <p><a href="forms.php">Return to Forms Assignment Page</a></p>
         </div>
+        
+        <?php include 'footer.php'; ?>
     </div>
 </body>
 </html>

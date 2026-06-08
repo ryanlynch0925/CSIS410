@@ -68,6 +68,7 @@ $comments = postAnswer("comments");
             <p><a href="post-poll.php">Return to POST Survey</a></p>
             <p><a href="forms.php">Return to Forms Assignment Page</a></p>
         </div>
+        <?php include 'footer.php'; ?>
     </div>
 </body>
 </html>
