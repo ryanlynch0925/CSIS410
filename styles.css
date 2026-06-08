@@ -151,3 +151,36 @@ body {
     padding: 8px;
     border: 1px solid #d6c7ad;
 }
+
+.subMenu {
+    background-color: #f4e3bd;
+    border: 1px solid #d6c7ad;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.subMenu a {
+    color: #6b4f2a;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.subMenu a:hover {
+    text-decoration: underline;
+}
+
+.nestedDirectory {
+    background-color:  #ffffff;
+    border: 1px solid #d6c7ad;
+    padding: 20px 20px 20px 35px;
+}
+
+.nestedDirectory ul {
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.nestedDirectory li {
+    margin-bottom: 6px;
+}

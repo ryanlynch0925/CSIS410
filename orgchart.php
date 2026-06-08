@@ -21,7 +21,7 @@ $pageKeywords = "PHP variables, PHP functions, organizational chart, employees";
     <div id="container">
         <div class="header">
             <h1>Aunt Lissa's Grace Closet</h1>
-            <p class="tagline">Providing clothing and support to those in need</p>
+            <p class="tagline">Module 1 Variables Assignment</p>
         </div>
 
         <div class="menu">
@@ -30,7 +30,7 @@ $pageKeywords = "PHP variables, PHP functions, organizational chart, employees";
                 <li><a href="foundations.php">Module 1 Foundations</a></li>
                 <li><a href="orgchart.php">Module 1 Variables</a></li>
                 <li><a href="forms.php">Module 2 Forms</a></li>
-                <li><a href="#">Module 3 Arrays</a></li>
+                <li><a href="arrays.php">Module 3 Arrays</a></li>
                 <li><a href="#">Module 4 Sessions</a></li>
                 <li><a href="#">Module 5 CMS Sessions</a></li>
                 <li><a href="#">Module 6 Database</a></li>
