@@ -1,5 +1,14 @@
 <div class="footer">
-            <p class="modified">Last modified: <?php echo date("F d, Y h:i A", filemtime(__FILE__)); ?></p>
+        <p class="modified">
+            Last modified: 
+            <?php echo date("F d, Y h:i A", filemtime(__FILE__)); ?>
+        </p>
+
+        <?php
+        if (isset($_SESSION["authenticated"]) && $_SESSION["authenticated"] === true) {
+            echo "<p><a href=\"logout.php\">Logout</a></p>";
+        }
+        ?>
 
     <div class="validation">
         <p>

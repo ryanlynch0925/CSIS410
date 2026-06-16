@@ -98,7 +98,7 @@ function displayEmployeeTable($employeeList) {
 
     foreach ($employeeList as $employee) {
         echo "<tr>";
-        echo "<td>" . cleanOutput($employee['firstName']) . " " . cleanOutput($employee['lastName'] . "</td?");
+        echo "<td>" . cleanOutput($employee['firstName']) . " " . cleanOutput($employee['lastName']) . "</td?";
         echo "<td>" . cleanOutput($employee['department']) . "</td>";
         echo "<td>" . cleanOutput($employee['team']) . "</td>";
         echo "<td>" . cleanOutput($employee['email']) . "</td>";
@@ -197,7 +197,7 @@ if (isset($_GET["view"])) {
                 <li><a href="orgchart.php">Module 1 Variables</a></li>
                 <li><a href="forms.php">Module 2 Forms</a></li>
                 <li><a href="arrays.php">Module 3 Arrays</a></li>
-                <li><a href="#">Module 4 Sessions</a></li>
+                <li><a href="login.php">Module 4 Sessions</a></li>
                 <li><a href="#">Module 5 CMS Sessions</a></li>
                 <li><a href="#">Module 6 Database</a></li>
                 <li><a href="#">Module 8 CMS Database</a></li>

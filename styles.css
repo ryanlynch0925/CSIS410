@@ -184,3 +184,12 @@ body {
 .nestedDirectory li {
     margin-bottom: 6px;
 }
+
+.errorMessage {
+    background-color: #f8d7da;
+    border: 1px solid #842029;
+    color: #842029;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
