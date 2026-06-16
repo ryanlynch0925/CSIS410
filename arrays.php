@@ -98,7 +98,7 @@ function displayEmployeeTable($employeeList) {
 
     foreach ($employeeList as $employee) {
         echo "<tr>";
-        echo "<td>" . cleanOutput($employee['firstName']) . " " . cleanOutput($employee['lastName']) . "</td?";
+        echo "<td>" . cleanOutput($employee['firstName']) . " " . cleanOutput($employee['lastName']) . "</td>";
         echo "<td>" . cleanOutput($employee['department']) . "</td>";
         echo "<td>" . cleanOutput($employee['team']) . "</td>";
         echo "<td>" . cleanOutput($employee['email']) . "</td>";
