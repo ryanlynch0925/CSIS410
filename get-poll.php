@@ -3,18 +3,10 @@ $pageTitle = "GET Product Survey";
 $pageDescription = "Product survey using the GET method";
 $pageKeywords = "GET form, product survey, product ranking";
 ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
-    <title><?php echo $pageTitle; ?></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="<?php echo $pageDescription; ?>" />
-    <meta name="keywords" content="<?php echo $pageKeywords; ?>" />
-    <link rel="stylesheet" type="text/css" href="styles.css?v=<?php echo filemtime('styles.css'); ?>" />
-</head>
+<?php
+include("header.php");
+include("menu.php");
+?>
 
 <body>
     <div id="container">

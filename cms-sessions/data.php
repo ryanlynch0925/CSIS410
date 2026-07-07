@@ -1,6 +1,6 @@
 <?php
 $products = array(
-    1 => array(
+    array(
         "id"=> 1,
         "name"=> "Mission Prayer Journal",
         "description"=> "A guided journal designed to help believers pray faithfully for missionaries, families, churches, and unreached communities.",
@@ -8,7 +8,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/prayer-journal.png"
     ),
-    2 => array(
+    array(
         "id"=> 2,
         "name"=> "Scripture Memory Card Set",
         "description"=> "A set of Bible verse cards focused on faith, hope, service, courage, and the Great Commission.",
@@ -16,7 +16,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/scripture-cards.png"
     ),
-    3 => array(
+    array(
         "id"=> 3,
         "name"=> "Grace Bridge Missions T-Shirt",
         "description"=> "A comfortable ministry shirt with the Grace Bridge Missions logo and a reminder to serve others in the name of Christ.",
@@ -24,7 +24,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/mission-shirt.png"
     ),
-    4 => array(
+    array(
         "id"=> 4,
         "name"=> "Family Devotion Guide",
         "description"=> "A simple family devotion guide with Scripture readings, discussion questions, and prayer prompts for each week.",
@@ -32,7 +32,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/devotion-guide.png"
     ),
-    5 => array(
+    array(
         "id"=> 5,
         "name"=> "Outreach Care Kit",
         "description"=> "A practical care kit designed to encourage local outreach with prayer cards, encouragement notes, and ministry supplies.",
@@ -40,7 +40,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/care-kit.png"
     ),
-    6 => array(
+    array(
         "id"=> 6,
         "name"=> "Worship Notebook",
         "description"=> "A notebook for sermon notes, worship reflections, answered prayers, and personal spiritual growth.",
@@ -48,7 +48,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/worship-notebook.png"
     ),
-    7 => array(
+    array(
         "id"=> 7,
         "name"=> "Kids Bible Activity Pack",
         "description"=> "A children’s activity pack with Bible coloring pages, simple memory verses, and mission-themed learning activities.",
@@ -56,7 +56,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/kids-activity-pack.png"
     ),
-    8 => array(
+    array(
         "id"=> 8,
         "name"=> "Missionary Support Bracelet",
         "description"=> "A bracelet created as a reminder to pray for missionaries and support the work of sharing the gospel.",
@@ -64,7 +64,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/support-bracelet.png"
     ),
-    9 => array(
+    array(
         "id"=> 9,
         "name"=> "Discipleship Study Book",
         "description"=> "A beginner-friendly study book focused on following Jesus, serving others, and growing in biblical truth.",
@@ -72,7 +72,7 @@ $products = array(
         "quantity"=> 25,
         "image"=> "images/discipleship-book.png"
     ),
-    10 => array(
+    array(
         "id"=> 10,
         "name"=> "Christian Sticker Pack",
         "description"=> "A pack of faith-based stickers with encouraging phrases, Scripture references, and mission-focused designs.",

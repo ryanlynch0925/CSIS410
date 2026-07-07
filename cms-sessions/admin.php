@@ -41,7 +41,7 @@ if (isset($_SESSION["displayName"])) {
             <?php
             foreach ($users as $user) {
                 echo "<tr>";
-                echo "<td>" . cleanOutput($user["name"]) ."</td>";
+                echo "<td>" . cleanOutput($user["username"]) . "</td>";
                 echo "<td>" . cleanOutput($user["displayName"]) ."</td>";
                 echo "<td>" . cleanOutput($user["role"]) ."</td>";
                 echo "</tr>";
@@ -64,10 +64,10 @@ if (isset($_SESSION["displayName"])) {
             <?php
             foreach ($products as $product) {
                 echo "<tr>";
-                echo "<td>" . cleanOutput($user["id"]) ."</td>";
-                echo "<td>" . cleanOutput($user["name"]) ."</td>";
-                echo "<td>" . cleanOutput($user["price"]) ."</td>";
-                echo "<td>" . cleanOutput($user["quantity"]) ."</td>";
+                echo "<td>" . cleanOutput($product["id"]) ."</td>";
+                echo "<td>" . cleanOutput($product["name"]) ."</td>";
+                echo "<td>" . cleanOutput($product["price"]) ."</td>";
+                echo "<td>" . cleanOutput($product["quantity"]) ."</td>";
                 echo "</tr>";
             }
             ?>
@@ -86,8 +86,8 @@ if (isset($_SESSION["displayName"])) {
             <?php
             foreach ($ministries as $ministry) {
                 echo "<tr>";
-                echo "<td>" . cleanOutput($user["name"]) ."</td>";
-                echo "<td>" . cleanOutput($user["scripture"]) ."</td>";
+                echo "<td>" . cleanOutput($ministry["name"]) ."</td>";
+                echo "<td>" . cleanOutput($ministry["scripture"]) ."</td>";
                 echo "</tr>";
             }
             ?>
