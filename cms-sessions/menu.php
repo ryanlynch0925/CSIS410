@@ -30,7 +30,7 @@
                 echo "<li><a href=\"publisher.php\">Publisher</a></li>";
             }
 
-            if (isset($_SESSION["role"]) && $_SESSION["role"] == "admin") {
+            if (isset($_SESSION["role"]) && $_SESSION["role"] == "administrator") {
                 echo "<li><a href=\"publisher.php\">Publisher</a></li>";
                 echo "<li><a href=\"admin.php\">Admin</a></li>";
             }

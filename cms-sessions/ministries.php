@@ -9,6 +9,19 @@ include("data.php");
 $pageTitle = "Ministries - Grace Bridge Missions";
 $pageDescription = "Ministry areas served by Grace Bridge Missions.";
 $pageKeywords = "ministries, outreach, discipleship, missionaries, Christian service, Grace Bridge Missions";
+$ministries = array();
+
+$ministryStatement = $pdo->query("
+    SELECT
+        id,
+        ministry_name,
+        ministry_description,
+        scripture,
+        is_active
+    FROM ministries
+    ORDER BY ministry_name
+");
+$ministries = $ministryStatement->fetchAll();
 
 include("header.php");
 include("menu.php");
@@ -42,11 +55,17 @@ include("menu.php");
             </tr>
 
             <?php
-            foreach ($ministries as $ministry) {
+            if (count($ministries) > 0) {
+                foreach ($ministries as $ministry) {
+                    echo "<tr>";
+                    echo "<td>" . cleanOutput($ministry["ministry_name"]) . "</td>";
+                    echo "<td>" . cleanOutput($ministry["ministry_description"]) . "</td>";
+                    echo "<td>" . cleanOutput($ministry["scripture"]) . "</td>";
+                    echo "</tr>";
+                }
+            } else {
                 echo "<tr>";
-                echo "<td>" . cleanOutput($ministry["name"]) . "</td>";
-                echo "<td>" . cleanOutput($ministry["description"]) . "</td>";
-                echo "<td>" . cleanOutput($ministry["scripture"]) . "</td>";
+                echo "<td colspan='3'>No ministries found.</td>";
                 echo "</tr>";
             }
             ?>
