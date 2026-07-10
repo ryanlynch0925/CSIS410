@@ -8,16 +8,32 @@ include("data.php");
 
 $pageTitle = "Store - Grace Bridge Missions";
 $pageDescription = "Christian product store for Grace Bridge Missions.";
-$pageKeywords = "store, Christian products, missions, cart, Grace Bridge Missions";
+$pageKeywords = "store, Christian products, missions, cart, database, Grace Bridge Missions";
 
 $message = "";
 $errorMessage = "";
+$products = array();
 
-if (!isset($_SESSION["cart"])) {
-    $_SESSION["cart"] = array();
-}
+$productStatement = $pdo->query("
+    SELECT
+        id,
+        product_name,
+        product_slug,
+        product_description,
+        sku,
+        price,
+        stock_quantity,
+        image_url,
+        category,
+        status
+    FROM products
+    WHERE status = 'active'
+    ORDER BY product_name
+");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset( $_POST["addToCart"])) {
+$products = $productStatement->fetchAll();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["addToCart"])) {
     $productId = "";
     $quantity = "";
 
@@ -29,21 +45,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset( $_POST["addToCart"])) {
         $quantity = trim($_POST["quantity"]);
     }
 
-    if (!numbersOnly($productId) || !isset($products[$productId])) {
+    if (!isset($_SESSION["authenticated"]) || $_SESSION["authenticated"] !== true) {
+        $errorMessage = "Please log in as a customer before adding products to your cart.";
+    } elseif (!isset($_SESSION["user_id"])) {
+        $errorMessage = "Your account session could not be verified. Please log in again.";
+    } elseif (!numbersOnly($productId)) {
         $errorMessage = "The selected product could not be found.";
     } elseif (!numbersOnly($quantity) || $quantity < 1) {
         $errorMessage = "Please enter a valid quantity.";
     } else {
         $productId = (int)$productId;
         $quantity = (int)$quantity;
+        $userId = (int)$_SESSION["user_id"];
 
-        if (isset($_SESSION["cart"][$productId])) {
-            $_SESSION["cart"][$productId] = $_SESSION["cart"][$productId] + $quantity;
+        $checkProduct = $pdo->prepare("
+            SELECT
+                id,
+                product_name,
+                stock_quantity
+            FROM products
+            WHERE id = :id
+            AND status = 'active'
+            LIMIT 1
+        ");
+
+        $checkProduct->execute([
+            ":id" => $productId
+        ]);
+
+        $product = $checkProduct->fetch();
+
+        if (!$product) {
+            $errorMessage = "The selected product could not be found.";
+        } elseif ($quantity > $product["stock_quantity"]) {
+            $errorMessage = "The requested quantity is not available.";
         } else {
-            $_SESSION["cart"][$productId] = $quantity;
-        }
+            $cartStatement = $pdo->prepare("
+                INSERT INTO cart_items (
+                    user_id,
+                    product_id,
+                    quantity
+                )
+                VALUES (
+                    :user_id,
+                    :product_id,
+                    :quantity
+                )
+                ON DUPLICATE KEY UPDATE
+                    quantity = quantity + VALUES(quantity),
+                    updated_at = CURRENT_TIMESTAMP
+            ");
 
-        $message = $products[$productId]["name"] . " was added to your cart.";
+            $cartStatement->execute([
+                ":user_id" => $userId,
+                ":product_id" => $productId,
+                ":quantity" => $quantity
+            ]);
+
+            $message = $product["product_name"] . " was added to your cart.";
+        }
     }
 }
 
@@ -57,59 +117,70 @@ include("menu.php");
     <p>
         <strong>Store Purpose:</strong>
         Purchases from this practice store support the fictional mission work of
-        Grace Bridge Missions. This page uses PHP arrays and sessions instead of a database.
+        Grace Bridge Missions. Products are now loaded from the database, and cart items
+        are saved to the customer account.
     </p>
 
     <?php
     if ($message != "") {
         echo "<div class=\"success\"><p>" . cleanOutput($message) . "</p></div>";
     }
+
     if ($errorMessage != "") {
-    echo "<div class=\"error\"><p>" . cleanOutput($errorMessage) . "</p></div>";
-}
+        echo "<div class=\"error\"><p>" . cleanOutput($errorMessage) . "</p></div>";
+    }
     ?>
 
     <div class="productGrid">
         <?php
-        foreach ($products as $product) {
-            echo "<div class=\"productCard\">";
+        if (count($products) > 0) {
+            foreach ($products as $product) {
+                echo "<div class=\"productCard\">";
 
-            echo "<img src=\"" . cleanOutput($product["image"]) . "\" alt=\"" . cleanOutput($product["name"]) . "\" />";
+                if ($product["image_url"] != "") {
+                    echo "<img src=\"" . cleanOutput($product["image_url"]) . "\" alt=\"" . cleanOutput($product["product_name"]) . "\" />";
+                }
 
-            echo "<h3>" . cleanOutput($product["name"]) . "</h3>";
+                echo "<h3>" . cleanOutput($product["product_name"]) . "</h3>";
 
-            echo "<p>" . cleanOutput($product["description"]) . "</p>";
+                echo "<p>" . cleanOutput($product["product_description"]) . "</p>";
 
-            echo "<p class=\"price\">" . formatMoney($product["price"]) . "</p>";
+                echo "<p><strong>Category:</strong> " . cleanOutput($product["category"]) . "</p>";
 
-            echo "<p><strong>Available Quantity:</strong> " . cleanOutput($product["quantity"]) . "</p>";
+                echo "<p class=\"price\">" . formatMoney($product["price"]) . "</p>";
 
-            echo "<form action=\"store.php\" method=\"post\">";
-            echo "<p>";
-            echo "<input type=\"hidden\" name=\"productId\" value=\"" . cleanOutput($product["id"]) . "\" />";
-            echo "<label for=\"quantity" . cleanOutput($product["id"]) . "\">Quantity:</label>";
-            echo "<input type=\"text\" name=\"quantity\" id=\"quantity" . cleanOutput($product["id"]) . "\" value=\"1\" />";
-            echo "</p>";
-            echo "<p>";
-            echo "<input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\" />";
-            echo "</p>";
-            echo "</form>";
+                echo "<p><strong>Available Quantity:</strong> " . cleanOutput($product["stock_quantity"]) . "</p>";
 
-            echo "</div>";
+                echo "<form action=\"store.php\" method=\"post\">";
+                echo "<p>";
+                echo "<input type=\"hidden\" name=\"productId\" value=\"" . cleanOutput($product["id"]) . "\" />";
+                echo "<label for=\"quantity" . cleanOutput($product["id"]) . "\">Quantity:</label>";
+                echo "<input type=\"text\" name=\"quantity\" id=\"quantity" . cleanOutput($product["id"]) . "\" value=\"1\" required />";
+                echo "</p>";
+                echo "<p>";
+                echo "<input type=\"submit\" name=\"addToCart\" value=\"Add to Cart\" />";
+                echo "</p>";
+                echo "</form>";
+
+                echo "</div>";
+            }
+        } else {
+            echo "<p>No products are available at this time.</p>";
         }
         ?>
     </div>
 
     <div class="clear"></div>
 
-        <p>
-            <a href="cart.php">View Shopping Cart</a>
-        </p>
+    <p>
+        <a href="cart.php">View Shopping Cart</a>
+    </p>
 
-        <p class="smallNote">
-            Product images were created by ChatGPT for this project.
-        </p>
-    </div>
+    <p class="smallNote">
+        Products are stored in the database for the Grace Bridge Missions CMS project.
+    </p>
+</div>
+
 <?php
 include("footer.php");
 ?>

@@ -1,5 +1,5 @@
-?<?php
-$allowedRoles = array("publisher", "admin");
+<?php
+$allowedRoles = array("publisher", "administrator");
 
 include("session_check.php");
 include("functions.php");
@@ -9,14 +9,44 @@ $pageTitle = "Publisher Dashboard - Grace Bridge Missions";
 $pageDescription = "Pulisher dashboard for Grace Bridge Missions ministry content.";
 $pageKeywords = "publisher, content, ministry, sessions, Grace Bridge Missions";
 
-include("header.php");
-include("menu.php");
-
 $displayName = "Content Publisher";
 
 if (isset($_SESSION["displayName"])) {
     $displayName = $_SESSION["displayName"];
 }
+
+$ministries = array();
+$contentSections = array();
+
+$ministryStatement = $pdo->query("
+    SELECT
+        id,
+        ministry_name,
+        ministry_description,
+        scripture,
+        is_active
+    FROM ministries
+    ORDER BY ministry_name
+");
+$ministries = $ministryStatement->fetchAll();
+
+$contentStatement = $pdo->query("
+    SELECT
+        content_sections.id,
+        pages.page_title,
+        content_sections.section_title,
+        content_sections.section_body,
+        content_sections.section_type,
+        content_sections.is_active
+    FROM content_sections
+    INNER JOIN pages ON content_sections.page_id = pages.id
+    ORDER BY pages.page_title, content_sections.display_order
+");
+
+$contentSections = $contentStatement->fetchAll();
+
+include("header.php");
+include("menu.php");
 ?>
 
 <div class="content">
@@ -25,6 +55,10 @@ if (isset($_SESSION["displayName"])) {
     <div class="noticeBox">
         <p>
             Welcome, <strong><?php echo cleanOutput($displayName); ?></strong>
+        </p>
+
+        <p>
+            <a href="publisher_content.php">Manage Website Content</a>
         </p>
     </div>
 
@@ -50,11 +84,53 @@ if (isset($_SESSION["displayName"])) {
             </tr>
 
             <?php
-            foreach ($ministries as $ministry) {
+            if (count($ministries) > 0) {
+                foreach ($ministries as $ministry) {
+                    echo "<tr>";
+                    echo "<td>" . cleanOutput($ministry["ministry_name"]) ."</td>";
+                    echo "<td>" . cleanOutput($ministry["ministry_description"]) ."</td>";
+                    echo "<td>" . cleanOutput($ministry["scripture"]) ."</td>";
+                    echo "</tr>";
+                }
+            } else {
                 echo "<tr>";
-                echo "<td>" . cleanOutput($ministry["name"]) ."</td>";
-                echo "<td>" . cleanOutput($ministry["description"]) ."</td>";
-                echo "<td>" . cleanOutput($ministry["scripture"]) ."</td>";
+                echo "<td colspan='3'>No ministries found.</td>";
+                echo "</tr>";
+            }
+            ?>
+        </table>
+    </div>
+
+    <div class="dashboardBox">
+        <h3>Editable Website Content Sections</h3>
+
+        <table>
+            <tr>
+                <th>Page</th>
+                <th>Section</th>
+                <th>Type</th>
+                <th>Status</th>
+            </tr>
+
+            <?php
+            if (count($contentSections) > 0) {
+                foreach ($contentSections as $section) {
+                    echo "<tr>";
+                    echo "<td>" . cleanOutput($section["page_title"]) . "</td>";
+                    echo "<td>" . cleanOutput($section["section_title"]) . "</td>";
+                    echo "<td>" . cleanOutput($section["section_type"]) . "</td>";
+
+                    if ($section["is_active"] == 1) {
+                        echo "<td>Active</td>";
+                    } else {
+                        echo "<td>Inactive</td>";
+                    }
+
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr>";
+                echo "<td colspan=\"4\">No editable content sections found.</td>";
                 echo "</tr>";
             }
             ?>
